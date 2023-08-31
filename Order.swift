@@ -37,7 +37,14 @@ class Order: ObservableObject, Codable {
     @Published var zip = ""
     
     var hasValidAddress: Bool {
-        if name.isEmpty || streetAddress.isEmpty || city.isEmpty || zip.isEmpty {
+        let whitespaceRegex = try! Regex("\\s")
+        let anyCharRegex = try! Regex("[a-zA-Z0-9]")
+        
+        let nameCond: Bool = (name.contains(whitespaceRegex) && !name.contains(anyCharRegex)) || name.isEmpty
+        let addressCond: Bool = (streetAddress.contains(whitespaceRegex) && !streetAddress.contains(anyCharRegex)) || streetAddress.isEmpty
+        let zipCond: Bool = (zip.contains(whitespaceRegex) && !zip.contains(anyCharRegex)) || zip.isEmpty
+        
+        if nameCond || addressCond || zipCond {
             return false
         }
         return true
