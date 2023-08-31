@@ -13,6 +13,8 @@ struct CheckoutView: View {
     
     @State private var confirmationMessage = ""
     @State private var showingConfirmation = false
+    @State private var showingError = false
+
     var body: some View {
         ScrollView {
             VStack {
@@ -35,6 +37,16 @@ struct CheckoutView: View {
                 }
                 .padding()
             }
+            .alert("There was a problem", isPresented: $showingError) {
+                Button("Cancel") {}
+                Button("Retry") {
+                    Task {
+                        await placeOrder()
+                    }
+                }
+            } message: {
+                Text("Your order was not processed.\nPlease wait a moment before trying again")
+            }
         }
         .navigationTitle("Check out")
         .navigationBarTitleDisplayMode(.inline)
@@ -55,7 +67,7 @@ struct CheckoutView: View {
         let url = URL(string: "https://reqres.in/api/cupcakes")!
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpMethod = "POST"
+//        request.httpMethod = "POST"
         
         do {
             let (data, _) = try await URLSession.shared.upload(for: request, from: encoded)
@@ -68,6 +80,7 @@ struct CheckoutView: View {
             showingConfirmation = true
         } catch {
             print("checkout failed")
+            showingError = true
         }
     }
 }
