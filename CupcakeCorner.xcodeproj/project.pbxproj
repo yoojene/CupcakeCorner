@@ -41,9 +41,6 @@
 		44DE9D942A9F727400475B35 = {
 			isa = PBXGroup;
 			children = (
-				44B10BA22A9F9317008DC8A7 /* CheckoutView.swift */,
-				44B10BA02A9F8AC5008DC8A7 /* AddressView.swift */,
-				44B10B9E2A9F87EF008DC8A7 /* Order.swift */,
 				44DE9D9F2A9F727400475B35 /* CupcakeCorner */,
 				44DE9D9E2A9F727400475B35 /* Products */,
 			);
@@ -60,6 +57,9 @@
 		44DE9D9F2A9F727400475B35 /* CupcakeCorner */ = {
 			isa = PBXGroup;
 			children = (
+				44B10BA22A9F9317008DC8A7 /* CheckoutView.swift */,
+				44B10BA02A9F8AC5008DC8A7 /* AddressView.swift */,
+				44B10B9E2A9F87EF008DC8A7 /* Order.swift */,
 				44DE9DA02A9F727400475B35 /* CupcakeCornerApp.swift */,
 				44DE9DA22A9F727400475B35 /* ContentView.swift */,
 				44DE9DA42A9F727600475B35 /* Assets.xcassets */,
